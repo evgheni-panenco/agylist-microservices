@@ -1,0 +1,44 @@
+spring:
+ cloud:
+   gateway:
+     routes:
+       - id: project-service
+         uri: lb://PROJECT-SERVICE
+         predicates:
+           - Path=/project/**
+         filters:
+           - AuthenticationFilter
+
+       - id: identity-service
+         uri: lb://IDENTITY-SERVICE
+         predicates:
+           - Path=/auth/**
+
+       - id: user-service
+         uri: lb://IDENTITY-SERVICE
+         predicates:
+           - Path=/user/**
+         filters:
+           - AuthenticationFilter
+
+       - id: sprint-service
+         uri: lb://SPRINT-SERVICE
+         predicates:
+           - Path=/sprint/**
+         filters:
+           - AuthenticationFilter
+
+       - id: item-service
+         uri: lb://ITEM-SERVICE
+         predicates:
+           - Path=/item/**
+         filters:
+           - AuthenticationFilter
+
+ application:
+   name: AGYLIST-GATEWAY
+
+eureka:
+  client:
+    service-url:
+      defaultZone : http://localhost:8761/eureka/

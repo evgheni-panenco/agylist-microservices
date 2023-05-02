@@ -1,0 +1,8 @@
+
+b	java:S112""FDefine and throw a dedicated exception instead of using a generic one.(Şï”Å8èÙÜ‹ı0
+a	java:S1122"FDefine and throw a dedicated exception instead of using a generic one.(•Òøe8èÙÜ‹ı0
+Z
+java:S3878-"8Remove this array creation and simply pass the elements.(Ç¤˜œüÿÿÿÿ8ÚÜ‹ı0
+Z	java:S1061"9Replace this use of System.out or System.err by a logger.(¾Şºÿÿÿÿÿ8ÚÜ‹ı0
+d
+java:S2094:"BRemove this empty class, write its code or make it an "interface".(¦Á¦¼ıÿÿÿÿ8’ÚÜ‹ı0

@@ -1,0 +1,10 @@
+/Users/evghenipanenco/Documents/develop/sandbox/api-gateway-test/jwt-apigateway-security/identity-service/src/main/java/com/javatechie/service/AuthService.java
+/Users/evghenipanenco/Documents/develop/sandbox/api-gateway-test/jwt-apigateway-security/identity-service/src/main/java/com/javatechie/dto/AuthRequest.java
+/Users/evghenipanenco/Documents/develop/sandbox/api-gateway-test/jwt-apigateway-security/identity-service/src/main/java/com/javatechie/config/CustomUserDetailsService.java
+/Users/evghenipanenco/Documents/develop/sandbox/api-gateway-test/jwt-apigateway-security/identity-service/src/main/java/com/javatechie/config/AuthConfig.java
+/Users/evghenipanenco/Documents/develop/sandbox/api-gateway-test/jwt-apigateway-security/identity-service/src/main/java/com/javatechie/entity/UserCredential.java
+/Users/evghenipanenco/Documents/develop/sandbox/api-gateway-test/jwt-apigateway-security/identity-service/src/main/java/com/javatechie/controller/AuthController.java
+/Users/evghenipanenco/Documents/develop/sandbox/api-gateway-test/jwt-apigateway-security/identity-service/src/main/java/com/javatechie/repository/UserCredentialRepository.java
+/Users/evghenipanenco/Documents/develop/sandbox/api-gateway-test/jwt-apigateway-security/identity-service/src/main/java/com/javatechie/config/CustomUserDetails.java
+/Users/evghenipanenco/Documents/develop/sandbox/api-gateway-test/jwt-apigateway-security/identity-service/src/main/java/com/javatechie/service/JwtService.java
+/Users/evghenipanenco/Documents/develop/sandbox/api-gateway-test/jwt-apigateway-security/identity-service/src/main/java/com/javatechie/IdentityServiceApplication.java
