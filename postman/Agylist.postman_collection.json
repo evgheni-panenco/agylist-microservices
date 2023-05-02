@@ -1,0 +1,671 @@
+{
+	"info": {
+		"_postman_id": "4b54b945-26a3-41e1-807c-a7a2cff94921",
+		"name": "Agylist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth/User",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Register new user",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "JSESSIONID=7CE91EE75A65277C0DCB6C5736C5DF5D",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"vanila\",\n    \"password\":\"pass\",\n    \"email\":\"vanila@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api}}/auth/register",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"postman.setEnvironmentVariable(\"token\", jsonData.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "JSESSIONID=7CE91EE75A65277C0DCB6C5736C5DF5D",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"Evgheni\",\n    \"password\":\"pass\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api}}/auth/token",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"auth",
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User Service",
+					"item": [
+						{
+							"name": "Get User By Username",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api}}/user/Evgheni",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"user",
+										"Evgheni"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api}}/user/findById/ca0dc642-ab25-4739-8f4d-8c9260feddbd",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"user",
+										"findById",
+										"ca0dc642-ab25-4739-8f4d-8c9260feddbd"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Project Service",
+			"item": [
+				{
+					"name": "Project",
+					"item": [
+						{
+							"name": "Get All Relevant to user projects",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api}}/project/all",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"project",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new project",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Awesome Project3\",\n    \"description\": \"My awesome description for this awesome project\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api}}/project",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"project"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update project",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Not so Awesome Project\",\n    \"description\": \"My awesome description for this awesome project\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api}}/project/3ebb0a6d-99cc-4fa9-8db3-0acfaf4ebf18",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"project",
+										"3ebb0a6d-99cc-4fa9-8db3-0acfaf4ebf18"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Management",
+					"item": [
+						{
+							"name": "Add user to project",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{api}}/project/management/3ebb0a6d-99cc-4fa9-8db3-0acfaf4ebf18/vanila",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"project",
+										"management",
+										"3ebb0a6d-99cc-4fa9-8db3-0acfaf4ebf18",
+										"vanila"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User on Project Record",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api}}/project/management/3ebb0a6d-99cc-4fa9-8db3-0acfaf4ebf18/Evgheni",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"project",
+										"management",
+										"3ebb0a6d-99cc-4fa9-8db3-0acfaf4ebf18",
+										"Evgheni"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Change user role",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{api}}/project/management/3ebb0a6d-99cc-4fa9-8db3-0acfaf4ebf18/vanila?role=MANAGER",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"project",
+										"management",
+										"3ebb0a6d-99cc-4fa9-8db3-0acfaf4ebf18",
+										"vanila"
+									],
+									"query": [
+										{
+											"key": "role",
+											"value": "MANAGER"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove user from project",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{api}}/project/management/3ebb0a6d-99cc-4fa9-8db3-0acfaf4ebf18/vanila",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"project",
+										"management",
+										"3ebb0a6d-99cc-4fa9-8db3-0acfaf4ebf18",
+										"vanila"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Close project",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{api}}/project/management/3ebb0a6d-99cc-4fa9-8db3-0acfaf4ebf18/close",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"project",
+										"management",
+										"3ebb0a6d-99cc-4fa9-8db3-0acfaf4ebf18",
+										"close"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Re-Open project",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{api}}/project/management/3ebb0a6d-99cc-4fa9-8db3-0acfaf4ebf18/reopen",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"project",
+										"management",
+										"3ebb0a6d-99cc-4fa9-8db3-0acfaf4ebf18",
+										"reopen"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Sprint Service",
+			"item": [
+				{
+					"name": "Create New Sprint",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"projectId\": \"98f7bca5-31f8-475d-aad1-a0d02d00232f\",\n    \"name\": \"MVP - project setup 2\",\n    \"goals\": \"Project init\",\n    \"startDate\": \"2012-06-06\",\n    \"endDate\": \"2012-06-12\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/sprint",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"sprint"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sprint By id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/sprint/f4d8f9e9-d697-43fc-a797-66b547df6f67",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"sprint",
+								"f4d8f9e9-d697-43fc-a797-66b547df6f67"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Sprints By ProjectId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/sprint/project/98f7bca5-31f8-475d-aad1-a0d02d00232f",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"sprint",
+								"project",
+								"98f7bca5-31f8-475d-aad1-a0d02d00232f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Sprint Informantion",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"new name\",\n    \"goals\": \"new goals\",\n    \"startDate\": \"2012-02-02\",\n    \"endDate\": \"2012-02-18\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/sprint/f4d8f9e9-d697-43fc-a797-66b547df6f67",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"sprint",
+								"f4d8f9e9-d697-43fc-a797-66b547df6f67"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Start Sprint",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/sprint/f4d8f9e9-d697-43fc-a797-66b547df6f67/start",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"sprint",
+								"f4d8f9e9-d697-43fc-a797-66b547df6f67",
+								"start"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Close Sprint",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/sprint/f4d8f9e9-d697-43fc-a797-66b547df6f67/close",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"sprint",
+								"f4d8f9e9-d697-43fc-a797-66b547df6f67",
+								"close"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Item Service",
+			"item": [
+				{
+					"name": "Create new item",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"projectId\": \"98f7bca5-31f8-475d-aad1-a0d02d00232f\",\n    \"sprintId\": \"f7903068-a92f-4210-b521-f68d5c8d0765\",\n    \"title\": \"Awesome story\",\n    \"description\": \"super puper duper\",\n    \"storyPoints\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/item",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"item"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Item By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/item/ba27d6b8-3a92-41a2-bca7-d9c9be5f92cf",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"item",
+								"ba27d6b8-3a92-41a2-bca7-d9c9be5f92cf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Item",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sprintId\": \"f7903068-a92f-4210-b521-f68d5c8d0765\",\n    \"assignedUserId\": \"ca0dc642-ab25-4739-8f4d-8c9260feddbd\",\n    \"title\": \"Awesome story2\",\n    \"description\": \"super puper duper\",\n    \"storyPoints\": 5,\n    \"status\": \"DONE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/item/ba27d6b8-3a92-41a2-bca7-d9c9be5f92cf",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"item",
+								"ba27d6b8-3a92-41a2-bca7-d9c9be5f92cf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Items By Project",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/item/project/98f7bca5-31f8-475d-aad1-a0d02d00232f",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"item",
+								"project",
+								"98f7bca5-31f8-475d-aad1-a0d02d00232f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Items By Sprint",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
